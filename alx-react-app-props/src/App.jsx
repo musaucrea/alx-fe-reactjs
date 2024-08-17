@@ -14,6 +14,9 @@ import { UserProvider } from './UserContext';
 function App() {
   
   const [count, setCount] = useState(0)
+  const UserContext = createContext();
+
+const UserProvider = ({ children, value }) =>
 
   return (
     <>
@@ -24,6 +27,11 @@ function App() {
             <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
             <Counter />
             <UserProvider value={userData}>
+      <ProfilePage />
+    </UserProvider>
+    </div>
+    <div>
+    <UserProvider value={userData}>
       <ProfilePage />
     </UserProvider>
     </div>
@@ -53,5 +61,5 @@ function App() {
     </>
   )
 }
-
+export { UserProvider };
 export default App
