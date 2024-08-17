@@ -1,5 +1,7 @@
 // UserContext.js
 import React, { createContext, useState } from 'react';
+import React, { createContext } from 'react';
+
 
 // Initialize the context
 const UserContext = createContext();
@@ -22,5 +24,6 @@ const UserProvider = ({ children }) => {
 
 export { UserContext, UserContext.Provider };
 export default UserContext;
+
 
 

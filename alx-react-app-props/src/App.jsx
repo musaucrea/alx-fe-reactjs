@@ -10,11 +10,14 @@ import Footer from './Footer';
 import UserProfile from './components/UserProfile';
 import ProfilePage from './ProfilePage';
 import { UserContext.Provider } from './UserContext';
+import { UserContext } from './UserContext';
+
 
 function App() {
   
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   const UserContext.Provider = createContext();
+  const UserContext = createContext();
 
 const UserContext.Provider = ({ children, value }) =>
 
