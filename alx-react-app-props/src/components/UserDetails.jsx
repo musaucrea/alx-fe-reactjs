@@ -1,4 +1,5 @@
-// src/UserDetails.jsx
+// src/components/UserDetails.jsx
+// eslint-disable-next-line no-unused-vars
 import React, { useContext } from 'react';
 import UserContext from '../UserContext';
 
@@ -14,3 +15,5 @@ function UserDetails() {
 }
 
 export default UserDetails;
+
+

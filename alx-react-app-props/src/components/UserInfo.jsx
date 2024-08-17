@@ -1,4 +1,5 @@
-// src/UserInfo.jsx
+/* eslint-disable no-unused-vars */
+// src/components/UserInfo.jsx
 import React from 'react';
 import UserDetails from './UserDetails';
 
@@ -7,3 +8,5 @@ function UserInfo() {
 }
 
 export default UserInfo;
+
+
