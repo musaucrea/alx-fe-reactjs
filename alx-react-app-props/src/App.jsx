@@ -9,14 +9,14 @@ import MainContent from './MainContent';
 import Footer from './Footer';
 import UserProfile from './components/UserProfile';
 import ProfilePage from './ProfilePage';
-import { UserProvider } from './UserContext';
+import { UserContext.Provider } from './UserContext';
 
 function App() {
   
   const [count, setCount] = useState(0)
-  const UserContext = createContext();
+  const UserContext.Provider = createContext();
 
-const UserProvider = ({ children, value }) =>
+const UserContext.Provider = ({ children, value }) =>
 
   return (
     <>
@@ -31,9 +31,9 @@ const UserProvider = ({ children, value }) =>
     </UserProvider>
     </div>
     <div>
-    <UserProvider value={userData}>
+    <UserContext.Provider value={userData}>
       <ProfilePage />
-    </UserProvider>
+    </UserContext.Provider>
     </div>
      <div>
             <WelcomeMessage />
@@ -61,5 +61,5 @@ const UserProvider = ({ children, value }) =>
     </>
   )
 }
-export { UserProvider };
+export { UserContext.Provider };
 export default App
