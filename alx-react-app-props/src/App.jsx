@@ -23,7 +23,7 @@ function App() {
             <Footer />
             <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
             <Counter />
-            <UserProvider>
+            <UserProvider value={userData}>
       <ProfilePage />
     </UserProvider>
     </div>
