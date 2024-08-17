@@ -1,12 +1,14 @@
-// src/components/ProfilePage.jsx
-// eslint-disable-next-line no-unused-vars
+// ProfilePage.jsx
 import React from 'react';
-import UserInfo from './UserInfo';
+import UserDetails from './UserDetails';
 
-function ProfilePage() {
-  return <UserInfo />;
-}
+const ProfilePage = () => {
+  return (
+    <div>
+      <UserDetails />
+      {/* Other components */}
+    </div>
+  );
+};
 
 export default ProfilePage;
-
-
