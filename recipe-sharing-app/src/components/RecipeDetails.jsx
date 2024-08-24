@@ -1,25 +1,34 @@
-// src/components/RecipeDetails.jsx
+// src/components/RecipeList.jsx
+import  { useEffect } from 'react';
 import { useRecipeStore } from '../recipeStore';
-import EditRecipeForm from './EditRecipeForm';
-import DeleteRecipeButton from './DeleteRecipeButton';
-import { useParams } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
-const RecipeDetails = () => {
-  const { recipeId } = useParams();
-  const recipe = useRecipeStore(state =>
-    state.recipes.find(recipe => recipe.id === parseInt(recipeId))
-  );
+const RecipeList = () => {
+  const recipes = useRecipeStore(state => state.filteredRecipes);
+  const filterRecipes = useRecipeStore(state => state.filterRecipes);
 
-  if (!recipe) return <p>Recipe not found</p>;
+  useEffect(() => {
+    filterRecipes();
+  }, [filterRecipes]);
 
   return (
     <div>
-      <h1>{recipe.title}</h1>
-      <p>{recipe.description}</p>
-      <EditRecipeForm recipe={recipe} />
-      <DeleteRecipeButton recipeId={recipe.id} />
+      <SearchBar />
+      <div>
+        {recipes.length > 0 ? (
+          recipes.map(recipe => (
+            <div key={recipe.id}>
+              <h3>{recipe.title}</h3>
+              <p>{recipe.description}</p>
+            </div>
+          ))
+        ) : (
+          <p>No recipes found</p>
+        )}
+      </div>
     </div>
   );
 };
 
-export default RecipeDetails;
+export default RecipeList;
+
