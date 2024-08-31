@@ -1,7 +1,7 @@
 // src/App.jsx
 import Profile from './components/Profile';
-import ProfileDetails from './components/ProfileDetails';
-import ProfileSettings from './components/ProfileSettings';
+import ProfileDetails from '../src/components/ProfileDetails';
+import ProfileSettings from '../src/components/ProfileSettings';
 
 function App() {
   return (
