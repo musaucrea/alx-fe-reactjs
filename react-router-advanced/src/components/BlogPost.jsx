@@ -2,28 +2,22 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-function BlogPost() {
-  const { postId } = useParams();
-  return <div>Blog Post ID: {postId}</div>;
-}
+const BlogPost = () => {
+  const { id } = useParams(); // Extract the dynamic 'id' from the URL
+
+  // Mock data fetch (replace with real API fetch if needed)
+  const post = {
+    id,
+    title: `Blog Post ${id}`,
+    content: `This is the content of blog post ${id}.`,
+  };
+
+  return (
+    <div>
+      <h2>{post.title}</h2>
+      <p>{post.content}</p>
+    </div>
+  );
+};
 
 export default BlogPost;
-
-// src/App.jsx
-import BlogPost from './components/BlogPost';
-
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile/*" element={<Profile />} />
-        <Route path="/post/:postId" element={<BlogPost />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
-  );
-}
-
-export default App;
