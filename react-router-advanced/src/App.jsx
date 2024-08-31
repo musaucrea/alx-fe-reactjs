@@ -6,6 +6,7 @@ import Profile from './components/Profile';
 import Login from './components/Login';
 import NotFound from './components/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
+import BlogPost from './components/BlogPost'; // Import the BlogPost component
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+        {/* Add the dynamic route for blog posts */}
+        <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
@@ -28,3 +31,4 @@ function App() {
 }
 
 export default App;
+
