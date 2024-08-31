@@ -13,8 +13,10 @@ const PostsComponent = () => {
     'posts',
     fetchPosts,
     {
-      keepPreviousData: true, // Keep the previous data while fetching new data
-      staleTime: 5000, // Optional: adjust the stale time to control data freshness
+      keepPreviousData: true, // Keep previous data while fetching new data
+      cacheTime: 1000 * 60 * 5, // Cache data for 5 minutes (300,000 ms)
+      refetchOnWindowFocus: true, // Refetch data when window regains focus
+      staleTime: 1000 * 60, // Optional: Data is fresh for 1 minute (60,000 ms)
     }
   );
 
@@ -40,3 +42,4 @@ const PostsComponent = () => {
 };
 
 export default PostsComponent;
+
