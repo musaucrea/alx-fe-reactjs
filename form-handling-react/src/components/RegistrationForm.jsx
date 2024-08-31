@@ -1,80 +1,100 @@
 // src/components/RegistrationForm.jsx
-import  { useState } from 'react';
+import React, { useState } from 'react';
 
 const RegistrationForm = () => {
-  // State to manage form inputs
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    password: ''
+    password: '',
   });
 
-  // State to manage form errors
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value
-    }));
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  // Basic validation to check that fields are not empty
   const validate = () => {
-    const newErrors = {};
-    if (!formData.username) newErrors.username = 'Username is required';
-    if (!formData.email) newErrors.email = 'Email is required';
-    if (!formData.password) newErrors.password = 'Password is required';
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0; // Return true if no errors
+    let isValid = true;
+    let errors = {};
+
+    if (!formData.username) {
+      errors.username = 'Username is required';
+      isValid = false;
+    }
+    if (!formData.email) {
+      errors.email = 'Email is required';
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = 'Email format is invalid';
+      isValid = false;
+    }
+    if (!formData.password) {
+      errors.password = 'Password is required';
+      isValid = false;
+    } else if (formData.password.length < 6) {
+      errors.password = 'Password must be at least 6 characters long';
+      isValid = false;
+    }
+
+    setErrors(errors);
+    return isValid;
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
     if (validate()) {
-      console.log('Form submitted successfully:', formData);
-      // Perform API call or other actions here
-      // Reset form state if needed
-      setFormData({ username: '', email: '', password: '' });
+      console.log('Form submitted:', formData);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Username:</label>
+        <label htmlFor="username">Username</label>
         <input
           type="text"
+          id="username"
           name="username"
-          value={formData.username}
+          value={formData.username}  // Added value attribute
           onChange={handleChange}
         />
-        {errors.username && <span style={{ color: 'red' }}>{errors.username}</span>}
+        {errors.username && <div className="error">{errors.username}</div>}
       </div>
+      
       <div>
-        <label>Email:</label>
+        <label htmlFor="email">Email</label>
         <input
           type="email"
+          id="email"
           name="email"
-          value={formData.email}
+          value={formData.email}  // Added value attribute
           onChange={handleChange}
         />
-        {errors.email && <span style={{ color: 'red' }}>{errors.email}</span>}
+        {errors.email && <div className="error">{errors.email}</div>}
       </div>
+      
       <div>
-        <label>Password:</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
+          id="password"
           name="password"
-          value={formData.password}
+          value={formData.password}  // Added value attribute
           onChange={handleChange}
         />
-        {errors.password && <span style={{ color: 'red' }}>{errors.password}</span>}
+        {errors.password && <div className="error">{errors.password}</div>}
       </div>
-      <button type="submit">Register</button>
+      
+      <button type="submit">Submit</button>
     </form>
   );
 };
