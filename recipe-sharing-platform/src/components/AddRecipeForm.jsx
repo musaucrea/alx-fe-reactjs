@@ -1,6 +1,6 @@
 // src/components/AddRecipeForm.jsx
 
-import  { useState } from 'react';
+import React, { useState } from 'react';
 
 const AddRecipeForm = () => {
   // State for form inputs
@@ -14,11 +14,12 @@ const AddRecipeForm = () => {
   const [errors, setErrors] = useState({});
 
   // Handle input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (event) => {
+    // Destructuring event to get name and value
+    const { name, value } = event.target; // Here, target.value is used
     setFormValues({
       ...formValues,
-      [name]: value,
+      [name]: value, // Update the state for the specific input field
     });
   };
 
@@ -26,6 +27,7 @@ const AddRecipeForm = () => {
   const validate = () => {
     let formErrors = {};
 
+    // Basic validation checks
     if (!formValues.title.trim()) {
       formErrors.title = 'Title is required';
     }
@@ -45,13 +47,14 @@ const AddRecipeForm = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
     // Perform validation
     if (validate()) {
-      // If valid, submit the form (e.g., send data to an API)
+      // If valid, submit the form (e.g., send data to an API or log it)
       console.log('Form submitted successfully:', formValues);
+
       // Clear the form after submission
       setFormValues({
         title: '',
