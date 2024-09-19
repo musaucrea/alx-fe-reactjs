@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SearchPage from './components/SearchPage';
-import HomePage from './components/HomePage';
-import NotFoundPage from './components/NotFoundPage';
+import Search from './components/Search';
+import HomePage from './components/HomePage';  // Assuming you have a HomePage component
+import NotFoundPage from './components/NotFoundPage';  // Assuming you have a NotFoundPage component
 
 const App = () => {
   return (
@@ -17,8 +17,8 @@ const App = () => {
 
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="*" element={<NotFoundPage />} />  {/* 404 route */}
+          <Route path="/search" element={<Search />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
     </Router>
