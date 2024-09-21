@@ -1,52 +1,49 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { fetchUserData } from '../services/githubService';
 
 const Search = () => {
   const [username, setUsername] = useState('');
-  const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
-
+    setError('');
     try {
-      const userData = await fetchUserData(username);
-      setUser(userData);
+      const data = await fetchUserData(username);
+      setUserData(data);
     } catch (err) {
-      setError("Looks like we cant find the user");
-      setUser(null);
+      setError('Looks like we can\'t find the user');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div>
+    <div className="search-container">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Enter GitHub username"
+          placeholder="Search GitHub username..."
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className="border p-2"
         />
-        <button type="submit">Search</button>
+        <button type="submit" className="p-2 bg-blue-500 text-white">Search</button>
       </form>
 
-      {/* Conditional Rendering */}
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      {user && !loading && !error && (
-        <div>
-          <img
-            src={user.avatar_url}
-            alt={user.login}
-            style={{ width: '100px', height: '100px', borderRadius: '50%' }}
-          />
-          <h3>{user.name || user.login}</h3>
-          <a href={user.html_url} target="_blank" rel="noopener noreferrer">View Profile</a>
+      {userData && (
+        <div className="user-data">
+          <img src={userData.avatar_url} alt={userData.login} width="100" />
+          <p>{userData.name}</p>
+          <p>{userData.location}</p>
+          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
+            Visit Profile
+          </a>
         </div>
       )}
     </div>
@@ -54,4 +51,3 @@ const Search = () => {
 };
 
 export default Search;
-
